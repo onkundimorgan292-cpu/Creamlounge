@@ -1,1147 +1,722 @@
-```html
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cream Lounge | Christmas Night Extravaganza • December 25, 2026</title>
-  <!-- Tailwind CSS -->
+  <title>Cream Lounge | December 25th VIP &amp; Table Bookings</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Cinzel, Playfair Display & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
-            display: ['Cinzel', 'Playfair Display', 'serif'],
-            serif: ['Playfair Display', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['Cinzel', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
           },
           colors: {
-            obsidian: '#0A0A0A',
-            charcoal: '#111111',
-            gold: {
-              300: '#FBE69B',
-              400: '#F5C542',
-              500: '#D4AF37',
-              600: '#AA8220',
-              700: '#7A5B10',
-            },
+            obsidian: '#070709',
+            charcoal: '#111115',
+            surface: '#16161C',
+            gold: '#D4AF37',
+            goldLight: '#F3D06B',
+            goldDark: '#9A7719',
+            liveGold: '#F5C542',
           },
           boxShadow: {
-            'gold-glow': '0 0 28px rgba(212, 175, 55, 0.22)',
-            'gold-strong': '0 0 42px rgba(212, 175, 55, 0.36)',
+            goldGlow: '0 0 28px rgba(212, 175, 55, 0.22)',
+            goldCard: '0 18px 45px rgba(0, 0, 0, 0.72), 0 0 0 1px rgba(212, 175, 55, 0.24)',
           },
         },
       },
     };
   </script>
-
   <style>
-    /* Luxury Obsidian Black & Champagne Gold Aesthetic */
+    :root {
+      --bg-primary: #070709;
+      --bg-card: #14141a;
+      --gold-accent: #D4AF37;
+      --live-dot: #F5C542;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-primary);
+      color: #F8F6F0;
+    }
+
     body {
-      background-color: #0A0A0A;
-      color: #F6F4EF;
-      background-image:
-        radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.16) 0%, transparent 50%),
-        radial-gradient(circle at 88% 34%, rgba(245, 197, 66, 0.06) 0%, transparent 44%),
-        radial-gradient(circle at 12% 76%, rgba(212, 175, 55, 0.06) 0%, transparent 44%);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.14) 0%, rgba(7, 7, 9, 0) 52%),
+        radial-gradient(circle at 85% 25%, rgba(154, 119, 25, 0.10) 0%, rgba(7, 7, 9, 0) 45%),
+        #070709;
+      min-height: 100vh;
     }
 
     .gold-text-gradient {
-      background: linear-gradient(135deg, #FBE69B 0%, #F5C542 38%, #D4AF37 70%, #F6DC88 100%);
+      background: linear-gradient(135deg, #FFF1B8 0%, #D4AF37 48%, #9E7818 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .gold-btn-gradient {
-      background: linear-gradient(135deg, #F5C542 0%, #D4AF37 52%, #B28922 100%);
-      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    .gold-border-glow {
+      border: 1px solid rgba(212, 175, 55, 0.32);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 241, 184, 0.14);
     }
 
-    .gold-btn-gradient:hover {
-      filter: brightness(1.08);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(212, 175, 55, 0.38);
+    .gold-border-glow:hover {
+      border-color: rgba(243, 208, 107, 0.72);
+      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.78), 0 0 24px rgba(212, 175, 55, 0.22);
     }
 
-    .glass-gold-card {
-      background: linear-gradient(165deg, rgba(20, 19, 16, 0.92) 0%, rgba(11, 11, 11, 0.98) 100%);
-      border: 1px solid rgba(212, 175, 55, 0.24);
-      backdrop-filter: blur(14px);
-      transition: transform 0.32s ease, border-color 0.32s ease, box-shadow 0.32s ease;
-    }
-
-    .glass-gold-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(245, 197, 66, 0.65);
-      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.78), 0 0 28px rgba(212, 175, 55, 0.18);
-    }
-
-    /* Animated Gold Pulse Ring for Live Indicator */
-    @keyframes goldPulseRing {
+    @keyframes pulseGold {
       0% {
-        transform: scale(0.85);
-        opacity: 0.95;
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(245, 197, 66, 0.85);
       }
       70% {
-        transform: scale(2.5);
-        opacity: 0;
+        transform: scale(1.08);
+        box-shadow: 0 0 0 10px rgba(245, 197, 66, 0);
       }
       100% {
-        transform: scale(2.5);
-        opacity: 0;
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(245, 197, 66, 0);
       }
     }
 
-    .live-gold-ring {
-      animation: goldPulseRing 1.9s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+    .live-dot-gold {
+      width: 11px;
+      height: 11px;
+      border-radius: 9999px;
+      background: radial-gradient(circle at 35% 35%, #FFF3B0, #F5C542 65%, #B8860B 100%);
+      animation: pulseGold 1.8s infinite;
+      flex-shrink: 0;
     }
 
-    /* Custom subtle scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #0A0A0A;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(212, 175, 55, 0.35);
-      border-radius: 9999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(245, 197, 66, 0.65);
+    .gold-shimmer-line {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.65), transparent);
     }
   </style>
 </head>
-<body class="antialiased selection:bg-gold-500 selection:text-black overflow-x-hidden">
+<body class="font-sans text-[#F8F6F0] antialiased selection:bg-gold selection:text-obsidian">
 
-  <!-- Sticky Top Navigation Bar -->
-  <header class="sticky top-0 z-40 border-b border-gold-500/20 bg-obsidian/90 backdrop-blur-md">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between gap-3">
-      <!-- Brand Crest & Wordmark -->
-      <a href="#event" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl border border-gold-500/55 bg-gradient-to-br from-gold-500/20 via-charcoal to-black flex items-center justify-center shadow-gold-glow">
-          <svg class="w-5 h-5 text-gold-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L14.8 8.2L21.5 9L16.5 13.6L17.8 20.3L12 17L6.2 20.3L7.5 13.6L2.5 9L9.2 8.2L12 2Z" />
-          </svg>
+  <!-- Top Navigation -->
+  <header class="sticky top-0 z-40 border-b border-gold/20 bg-obsidian/85 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 sm:px-6">
+      <a href="#top" class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full border border-gold/50 bg-gold/10 font-display text-lg font-bold text-goldLight shadow-goldGlow">
+          CL
         </div>
         <div>
-          <span id="nav-venue-name" class="font-display text-lg sm:text-xl font-bold tracking-wider gold-text-gradient block leading-none">
-            CREAM LOUNGE
-          </span>
-          <span id="nav-venue-tagline" class="text-[10px] sm:text-[11px] uppercase tracking-[0.22em] text-stone-400 block mt-1">
-            Luxury Nightlife &amp; VIP Experience
-          </span>
+          <p id="navVenueName" class="font-display text-base font-bold tracking-[0.18em] text-goldLight sm:text-lg">CREAM LOUNGE</p>
+          <p id="navTagline" class="text-[11px] uppercase tracking-[0.22em] text-stone-400">Luxury Nightlife &amp; VIP Experience</p>
         </div>
       </a>
 
-      <!-- Desktop Navigation Links -->
-      <nav class="hidden md:flex items-center gap-7 text-xs font-semibold uppercase tracking-widest text-stone-300">
-        <a href="#event" class="hover:text-gold-400 transition">Event</a>
-        <a href="#packages" class="hover:text-gold-400 transition">Packages</a>
-        <a href="#gallery" class="hover:text-gold-400 transition">Gallery</a>
-        <button
-          type="button"
-          onclick="openBookingModal('vvip')"
-          class="hover:text-gold-400 transition uppercase tracking-widest cursor-pointer"
-        >
-          Book Now
-        </button>
+      <nav class="hidden items-center gap-7 text-sm font-medium text-stone-300 md:flex">
+        <a href="#countdown" class="transition hover:text-goldLight">Dec 25th Event</a>
+        <a href="#packages" class="transition hover:text-goldLight">Table Packages</a>
+        <a href="#gallery" class="transition hover:text-goldLight">Gallery</a>
+        <a href="#contact" class="transition hover:text-goldLight">Booking Desk</a>
       </nav>
 
-      <!-- Pulsing Golden Live Bookings Indicator + Quick CTA -->
-      <div class="flex items-center gap-2.5 sm:gap-3">
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gold-400/45 bg-gold-500/10 shadow-gold-glow">
-          <span class="relative flex h-2.5 w-2.5">
-            <span class="live-gold-ring absolute inline-flex h-full w-full rounded-full bg-gold-400"></span>
-            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-gold-400 shadow-[0_0_10px_#F5C542]"></span>
-          </span>
-          <span id="nav-live-status" class="text-[10px] sm:text-xs font-bold tracking-widest uppercase text-gold-300 whitespace-nowrap">
-            LIVE BOOKINGS OPEN
-          </span>
-        </div>
-
-        <button
-          type="button"
-          onclick="openBookingModal('vvip')"
-          class="hidden sm:inline-flex items-center px-4 py-2 rounded-xl text-xs font-extrabold uppercase tracking-wider text-black gold-btn-gradient cursor-pointer"
-        >
-          Book Now
-        </button>
-      </div>
+      <a
+        id="headerBookBtn"
+        href="#packages"
+        class="rounded-full bg-gradient-to-r from-goldDark via-gold to-goldLight px-4 py-2 text-xs font-bold uppercase tracking-[0.14em] text-obsidian shadow-goldGlow transition hover:brightness-110 sm:px-5 sm:py-2.5"
+      >
+        Book Now
+      </a>
     </div>
   </header>
 
-  <!-- Hero Section & Real-Time December 25th Countdown -->
-  <section id="event" class="relative pt-12 pb-16 sm:pt-20 sm:pb-24 px-4 sm:px-6">
-    <div class="max-w-5xl mx-auto text-center">
-      <!-- Pulsing Live Event Badge -->
-      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-gold-500/35 bg-charcoal/95 text-gold-300 text-xs sm:text-sm font-semibold tracking-widest uppercase mb-6 shadow-gold-glow">
-        <span class="relative flex h-2.5 w-2.5">
-          <span class="live-gold-ring absolute inline-flex h-full w-full rounded-full bg-gold-400"></span>
-          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-gold-400"></span>
+  <!-- Hero & Live Countdown -->
+  <section id="top" class="relative overflow-hidden px-4 pt-10 pb-16 sm:px-6 sm:pt-14 sm:pb-20">
+    <div class="mx-auto max-w-5xl text-center">
+      <!-- Live Golden Indicator Pill -->
+      <div class="mb-6 inline-flex items-center gap-2.5 rounded-full border border-gold/45 bg-surface/90 px-4 py-2 shadow-goldGlow">
+        <span class="live-dot-gold" aria-hidden="true"></span>
+        <span id="liveStatusText" class="text-xs font-bold uppercase tracking-[0.22em] text-liveGold">
+          LIVE BOOKINGS OPEN &bull; DECEMBER 25, 2026
         </span>
-        <span id="hero-live-badge">LIVE BOOKINGS OPEN • DECEMBER 25, 2026</span>
       </div>
 
-      <!-- Main Event Title -->
-      <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] mb-5">
-        <span id="hero-event-title" class="block gold-text-gradient">
-          Christmas Night Extravaganza
-        </span>
-        <span class="block text-white text-2xl sm:text-4xl lg:text-5xl mt-2 font-serif italic font-semibold">
-          at <span id="hero-venue-subtitle">Cream Lounge</span>
-        </span>
+      <p class="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-gold/90 sm:text-sm">
+        Christmas Night Exclusive
+      </p>
+      <h1 id="heroTitle" class="font-display text-4xl font-extrabold tracking-[0.08em] gold-text-gradient sm:text-6xl md:text-7xl">
+        CREAM LOUNGE
       </h1>
-
-      <p class="max-w-2xl mx-auto text-stone-300 text-sm sm:text-lg leading-relaxed mb-10">
-        Indulge in Kisii’s ultimate festive celebration of gold-standard hospitality, illuminated bottle parades, live DJ sets, and curated luxury. Reserve your VVIP booth, VIP lounge table, or Regular access directly via WhatsApp with zero ticketing fees.
+      <p id="heroSubtitle" class="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-stone-300 sm:text-base">
+        Experience an unforgettable <span class="font-semibold text-goldLight">December 25th</span> celebration of premier bottle service, curated sounds, and luxury lounge tables. Reserve your VVIP, VIP, or Regular spot directly via WhatsApp.
       </p>
 
-      <!-- Real-Time Countdown Timer -->
-      <div class="max-w-2xl mx-auto mb-10">
-        <p id="countdown-caption" class="text-[11px] uppercase tracking-[0.28em] text-gold-400 font-semibold mb-3.5">
-          Countdown to December 25, 2026 • 9:00 PM EAT
-        </p>
-        <div id="countdown-grid" class="grid grid-cols-4 gap-2.5 sm:gap-4">
-          <div class="glass-gold-card rounded-2xl p-3.5 sm:p-5 text-center">
-            <span id="cd-days" class="font-display text-2xl sm:text-4xl font-bold gold-text-gradient block">00</span>
-            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-stone-400 mt-1 block">Days</span>
+      <!-- Real-Time Countdown Box -->
+      <div id="countdown" class="mx-auto mt-9 max-w-3xl rounded-2xl gold-border-glow bg-surface/85 p-5 backdrop-blur-md sm:p-7">
+        <div class="mb-4 flex flex-col items-center justify-between gap-2 sm:flex-row">
+          <span class="text-xs font-semibold uppercase tracking-[0.2em] text-goldLight">
+            Countdown to December 25, 2026
+          </span>
+          <span id="eventDateBadge" class="rounded-full border border-gold/30 bg-obsidian/80 px-3 py-1 text-[11px] font-medium text-stone-300">
+            Doors Open 9:00 PM EAT
+          </span>
+        </div>
+
+        <div class="grid grid-cols-4 gap-2.5 sm:gap-4">
+          <div class="rounded-xl border border-gold/25 bg-obsidian/90 p-3 sm:p-4">
+            <div id="cd-days" class="font-display text-2xl font-bold text-goldLight sm:text-4xl">00</div>
+            <div class="mt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-stone-400 sm:text-xs">Days</div>
           </div>
-          <div class="glass-gold-card rounded-2xl p-3.5 sm:p-5 text-center">
-            <span id="cd-hours" class="font-display text-2xl sm:text-4xl font-bold gold-text-gradient block">00</span>
-            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-stone-400 mt-1 block">Hours</span>
+          <div class="rounded-xl border border-gold/25 bg-obsidian/90 p-3 sm:p-4">
+            <div id="cd-hours" class="font-display text-2xl font-bold text-goldLight sm:text-4xl">00</div>
+            <div class="mt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-stone-400 sm:text-xs">Hours</div>
           </div>
-          <div class="glass-gold-card rounded-2xl p-3.5 sm:p-5 text-center">
-            <span id="cd-minutes" class="font-display text-2xl sm:text-4xl font-bold gold-text-gradient block">00</span>
-            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-stone-400 mt-1 block">Minutes</span>
+          <div class="rounded-xl border border-gold/25 bg-obsidian/90 p-3 sm:p-4">
+            <div id="cd-minutes" class="font-display text-2xl font-bold text-goldLight sm:text-4xl">00</div>
+            <div class="mt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-stone-400 sm:text-xs">Minutes</div>
           </div>
-          <div class="glass-gold-card rounded-2xl p-3.5 sm:p-5 text-center">
-            <span id="cd-seconds" class="font-display text-2xl sm:text-4xl font-bold gold-text-gradient block">00</span>
-            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-stone-400 mt-1 block">Seconds</span>
+          <div class="rounded-xl border border-gold/25 bg-obsidian/90 p-3 sm:p-4">
+            <div id="cd-seconds" class="font-display text-2xl font-bold text-liveGold sm:text-4xl">00</div>
+            <div class="mt-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-stone-400 sm:text-xs">Seconds</div>
           </div>
         </div>
       </div>
 
-      <!-- Primary & Secondary Hero CTAs -->
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <!-- Primary CTAs -->
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
         <a
           href="#packages"
-          class="w-full sm:w-auto px-8 py-4 rounded-2xl font-extrabold text-xs sm:text-sm uppercase tracking-widest text-black gold-btn-gradient shadow-gold-strong"
+          class="rounded-full bg-gradient-to-r from-goldDark via-gold to-goldLight px-7 py-3.5 text-xs font-extrabold uppercase tracking-[0.18em] text-obsidian shadow-goldGlow transition hover:scale-[1.02] sm:text-sm"
         >
-          Reserve VIP Table
+          Reserve Dec 25th Table
         </a>
         <a
-          href="#gallery"
-          class="w-full sm:w-auto px-8 py-4 rounded-2xl font-semibold text-xs sm:text-sm uppercase tracking-widest text-gold-300 border border-gold-500/45 bg-charcoal/85 hover:bg-gold-500/10 transition"
+          id="heroWhatsappDirect"
+          href="https://wa.me/254116162159?text=Hello%20Cream%20Lounge%2C%20I%20would%20like%20to%20book%20for%20the%20December%2025th%20event."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-full border border-gold/50 bg-surface/90 px-7 py-3.5 text-xs font-bold uppercase tracking-[0.18em] text-goldLight transition hover:border-goldLight hover:bg-gold/10 sm:text-sm"
         >
-          Explore Gallery
+          WhatsApp: 0116162159
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Booking Packages Section (Dynamically Rendered from Config + Inline Fallback) -->
-  <section id="packages" class="py-16 sm:py-24 px-4 sm:px-6 border-t border-gold-500/15">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center max-w-2xl mx-auto mb-14">
-        <span class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-400 block mb-2">
-          Limited Festive Table Allocations
-        </span>
-        <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">
-          VIP &amp; Table Packages
+  <div class="gold-shimmer-line mx-auto max-w-6xl"></div>
+
+  <!-- Booking Packages Section -->
+  <section id="packages" class="px-4 py-16 sm:px-6 sm:py-20">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-12 text-center">
+        <p class="text-xs font-bold uppercase tracking-[0.28em] text-gold">December 25th Packages</p>
+        <h2 class="mt-2 font-display text-3xl font-bold tracking-[0.06em] text-white sm:text-5xl">
+          Select Your <span class="gold-text-gradient">Tier</span>
         </h2>
-        <p class="text-stone-400 text-sm sm:text-base">
-          Select your preferred tier for <span id="packages-event-date" class="text-gold-300 font-medium">December 25, 2026</span> to confirm instantly with Cream Lounge’s reservations desk on WhatsApp.
+        <p class="mx-auto mt-3 max-w-xl text-sm text-stone-400">
+          Tap any package below to confirm your reservation details and send an instant booking request to our WhatsApp desk (<span class="font-semibold text-goldLight">0116162159</span>).
         </p>
       </div>
 
-      <!-- Dynamic Packages Grid -->
-      <div id="packages-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-7 items-stretch"></div>
+      <div id="packagesGrid" class="grid gap-7 md:grid-cols-3">
+        <!-- Populated dynamically from config -->
+      </div>
     </div>
   </section>
 
-  <!-- Cream Lounge Atmosphere & Nightlife Gallery -->
-  <section id="gallery" class="py-16 sm:py-24 px-4 sm:px-6 border-t border-gold-500/15">
-    <div class="max-w-6xl mx-auto">
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+  <div class="gold-shimmer-line mx-auto max-w-6xl"></div>
+
+  <!-- Atmosphere & Nightlife Gallery -->
+  <section id="gallery" class="px-4 py-16 sm:px-6 sm:py-20">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
         <div>
-          <span class="text-xs font-semibold uppercase tracking-[0.28em] text-gold-400 block mb-2">
-            Atmosphere &amp; Nightlife Showcase
-          </span>
-          <h2 class="font-display text-3xl sm:text-5xl font-bold text-white">
-            The Cream Experience
+          <p class="text-xs font-bold uppercase tracking-[0.28em] text-gold">Inside Cream Lounge</p>
+          <h2 class="mt-1 font-display text-3xl font-bold tracking-[0.06em] text-white sm:text-4xl">
+            Nightlife <span class="gold-text-gradient">Gallery</span>
           </h2>
         </div>
 
-        <!-- Category Filter Tabs -->
-        <div id="gallery-filters" class="flex flex-wrap items-center gap-2">
-          <button
-            type="button"
-            data-filter="All"
-            onclick="filterGallery('All')"
-            class="gallery-filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-gold-500 text-black border border-gold-400 transition cursor-pointer"
-          >
-            All
-          </button>
-          <button
-            type="button"
-            data-filter="VIP Service"
-            onclick="filterGallery('VIP Service')"
-            class="gallery-filter-btn px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-charcoal text-stone-300 border border-gold-500/30 hover:border-gold-400 transition cursor-pointer"
-          >
-            VIP Service
-          </button>
-          <button
-            type="button"
-            data-filter="Atmosphere"
-            onclick="filterGallery('Atmosphere')"
-            class="gallery-filter-btn px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-charcoal text-stone-300 border border-gold-500/30 hover:border-gold-400 transition cursor-pointer"
-          >
-            Atmosphere
-          </button>
-          <button
-            type="button"
-            data-filter="Entertainment"
-            onclick="filterGallery('Entertainment')"
-            class="gallery-filter-btn px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-charcoal text-stone-300 border border-gold-500/30 hover:border-gold-400 transition cursor-pointer"
-          >
-            Entertainment
-          </button>
+        <div id="galleryFilters" class="flex flex-wrap gap-2">
+          <!-- Category filter buttons populated dynamically -->
         </div>
       </div>
 
-      <!-- Dynamic Gallery Grid -->
-      <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      <div id="galleryGrid" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Populated dynamically from config -->
+      </div>
     </div>
   </section>
 
-  <!-- Direct Concierge & Verification Banner -->
-  <section class="py-12 px-4 sm:px-6">
-    <div class="max-w-6xl mx-auto glass-gold-card rounded-3xl p-7 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="text-center md:text-left">
-        <div class="inline-flex items-center gap-2 text-gold-400 text-xs font-bold uppercase tracking-widest mb-2">
-          <span class="h-2 w-2 rounded-full bg-gold-400"></span>
-          <span>Official Reservations Desk</span>
+  <!-- Booking Desk & Footer -->
+  <footer id="contact" class="border-t border-gold/25 bg-charcoal/95 px-4 py-12 sm:px-6">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
+      <div>
+        <div class="inline-flex items-center gap-2">
+          <span class="live-dot-gold" aria-hidden="true"></span>
+          <span class="font-display text-lg font-bold tracking-[0.16em] text-goldLight">CREAM LOUNGE</span>
         </div>
-        <h3 class="font-display text-2xl sm:text-3xl font-bold text-white mb-2">
-          Custom Group &amp; Bottle Inquiries
-        </h3>
-        <p class="text-stone-400 text-sm sm:text-base max-w-xl">
-          Speak directly with Cream Lounge management on WhatsApp or call <span id="concierge-phone-text" class="text-gold-300 font-semibold">0116162159</span> for custom birthday setups, corporate tables, and arrival coordination.
+        <p class="mt-2 text-sm text-stone-400">
+          Featured Event: <span class="font-semibold text-stone-200">December 25, 2026</span> &bull; WhatsApp Booking Line: <span id="footerPhone" class="font-semibold text-goldLight">0116162159</span>
         </p>
       </div>
-      <div class="flex flex-col sm:flex-row gap-3 shrink-0 w-full md:w-auto">
-        <a
-          id="concierge-call-link"
-          href="tel:+254116162159"
-          class="px-6 py-3.5 rounded-2xl text-center text-xs font-bold uppercase tracking-widest border border-gold-500/50 text-gold-300 hover:bg-gold-500/10 transition"
-        >
-          Call <span class="js-display-phone">0116162159</span>
-        </a>
+
+      <div class="flex flex-wrap items-center justify-center gap-3">
         <button
           type="button"
-          onclick="openBookingModal('vvip')"
-          class="px-6 py-3.5 rounded-2xl text-xs font-extrabold uppercase tracking-widest text-black gold-btn-gradient cursor-pointer"
+          onclick="openBookingModal('VVIP Table', 50000)"
+          class="rounded-full bg-gradient-to-r from-goldDark via-gold to-goldLight px-5 py-2.5 text-xs font-bold uppercase tracking-[0.15em] text-obsidian transition hover:brightness-110"
         >
-          Book via WhatsApp
+          Book VVIP (50,000)
         </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="border-t border-gold-500/20 py-10 px-4 sm:px-6 text-stone-400 text-xs sm:text-sm">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-      <div class="flex items-center gap-2.5">
-        <span id="footer-venue-name" class="font-display font-bold text-gold-400 tracking-wider">CREAM LOUNGE</span>
-        <span class="text-stone-600">•</span>
-        <span id="footer-event-date">December 25, 2026</span>
-      </div>
-      <div>
-        Direct WhatsApp Reservations:
-        <a
-          id="footer-whatsapp-link"
-          href="https://wa.me/254116162159"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-gold-300 hover:underline font-semibold"
+        <button
+          type="button"
+          onclick="openBookingModal('VIP Table', 45000)"
+          class="rounded-full border border-gold/45 bg-surface px-5 py-2.5 text-xs font-bold uppercase tracking-[0.15em] text-goldLight transition hover:bg-gold/10"
         >
-          <span class="js-display-phone">0116162159</span>
-        </a>
-      </div>
-      <div class="text-stone-500">
-        18+ Strictly • Drink Responsibly
+          Book VIP (45,000)
+        </button>
+        <button
+          type="button"
+          onclick="openBookingModal('Regular Entry / Table', 5000)"
+          class="rounded-full border border-gold/45 bg-surface px-5 py-2.5 text-xs font-bold uppercase tracking-[0.15em] text-goldLight transition hover:bg-gold/10"
+        >
+          Book Regular (5,000)
+        </button>
       </div>
     </div>
   </footer>
 
-  <!-- Floating Gold-Accented WhatsApp Concierge Button -->
-  <a
-    id="floating-whatsapp-btn"
-    href="https://wa.me/254116162159?text=Hello%20Cream%20Lounge%2C%20I%20would%20like%20to%20book%20a%20table%20for%20the%20December%2025%2C%202026%20Christmas%20Night%20Extravaganza."
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="WhatsApp Concierge"
-    class="fixed bottom-5 right-5 z-40 flex items-center gap-2.5 px-4 py-3.5 rounded-full bg-obsidian border border-gold-400/70 text-gold-300 hover:bg-gold-500 hover:text-black font-bold text-xs uppercase tracking-wider shadow-gold-strong transition"
-  >
-    <span class="relative flex h-2.5 w-2.5">
-      <span class="live-gold-ring absolute inline-flex h-full w-full rounded-full bg-gold-400"></span>
-      <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-gold-400"></span>
-    </span>
-    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
-    </svg>
-    <span class="hidden sm:inline">WhatsApp • <span class="js-display-phone">0116162159</span></span>
-  </a>
-
-  <!-- Full-Screen Gold-Framed Lightbox Modal -->
-  <div id="lightbox-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/92 backdrop-blur-md">
-    <div class="relative max-w-4xl w-full flex flex-col items-center">
-      <button
-        type="button"
-        onclick="closeLightbox()"
-        aria-label="Close lightbox"
-        class="self-end mb-3 w-10 h-10 rounded-full border border-gold-400/60 bg-charcoal text-gold-300 hover:bg-gold-500 hover:text-black flex items-center justify-center font-bold transition cursor-pointer"
-      >
-        ✕
-      </button>
-      <div class="glass-gold-card rounded-3xl overflow-hidden border-gold-400/60 shadow-gold-strong w-full">
-        <div id="lightbox-media-container" class="w-full max-h-[72vh] bg-obsidian flex items-center justify-center overflow-hidden">
-          <img id="lightbox-img" src="" alt="Cream Lounge Gallery Preview" class="w-full max-h-[72vh] object-contain" />
-        </div>
-        <div class="p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-gold-500/25 bg-charcoal/95">
-          <div>
-            <span id="lightbox-category" class="text-[11px] font-bold uppercase tracking-widest text-gold-400 block"></span>
-            <h4 id="lightbox-title" class="font-display text-lg sm:text-xl font-bold text-white mt-0.5"></h4>
-          </div>
-          <button
-            type="button"
-            onclick="closeLightbox(); openBookingModal('vvip')"
-            class="px-6 py-3 rounded-xl text-xs font-extrabold uppercase tracking-widest text-black gold-btn-gradient cursor-pointer shrink-0"
-          >
-            Book Table for Dec 25th
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Interactive WhatsApp Reservation Modal -->
-  <div id="booking-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/85 backdrop-blur-sm overflow-y-auto">
-    <div class="glass-gold-card w-full max-w-lg rounded-3xl p-6 sm:p-8 border-gold-400/60 shadow-gold-strong relative my-auto">
-      <!-- Close Modal Button -->
+  <!-- WhatsApp Booking Modal -->
+  <div id="bookingModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4 backdrop-blur-sm">
+    <div class="relative w-full max-w-md rounded-2xl gold-border-glow bg-surface p-6 shadow-goldCard">
       <button
         type="button"
         onclick="closeBookingModal()"
         aria-label="Close booking modal"
-        class="absolute top-5 right-5 w-9 h-9 rounded-full border border-gold-500/35 flex items-center justify-center text-stone-400 hover:text-gold-300 hover:border-gold-400 transition cursor-pointer"
+        class="absolute top-4 right-4 flex h-8 w-8 items-center justify-center rounded-full border border-gold/30 text-stone-300 transition hover:border-gold hover:text-goldLight"
       >
-        ✕
+        &times;
       </button>
 
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/35 text-gold-300 text-[11px] font-bold uppercase tracking-widest mb-3">
-        <span class="h-2 w-2 rounded-full bg-gold-400"></span>
-        <span id="modal-event-pill">December 25, 2026 • Instant WhatsApp</span>
+      <div class="mb-5 flex items-center gap-2">
+        <span class="live-dot-gold" aria-hidden="true"></span>
+        <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-liveGold">Instant WhatsApp Reservation</span>
       </div>
 
-      <h3 class="font-display text-2xl font-bold text-white mb-1">Reserve Your Experience</h3>
-      <p class="text-xs text-stone-400 mb-5">
-        Complete the details below to send your reservation directly to Cream Lounge (<span class="text-gold-300 font-semibold js-display-phone">0116162159</span>).
+      <h3 class="font-display text-2xl font-bold text-goldLight">Reserve for Dec 25th</h3>
+      <p class="mt-1 text-xs text-stone-400">
+        Your booking request will open directly to <span id="modalPhoneText" class="font-semibold text-stone-200">0116162159</span>.
       </p>
 
-      <form id="booking-form" onsubmit="submitWhatsAppBooking(event)" class="space-y-4">
-        <!-- Package Selector -->
+      <form id="bookingForm" class="mt-5 space-y-4">
         <div>
-          <label for="booking-package" class="block text-xs font-semibold uppercase tracking-wider text-gold-300 mb-1.5">
-            Select Package Tier *
-          </label>
-          <select
-            id="booking-package"
-            onchange="recalculateBookingTotal()"
-            class="w-full rounded-xl bg-obsidian border border-gold-500/40 px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-400"
-          ></select>
+          <label class="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-stone-300">Package Tier</label>
+          <select id="packageSelect" class="w-full rounded-xl border border-gold/35 bg-obsidian px-3.5 py-2.5 text-sm text-white focus:border-goldLight focus:outline-none">
+            <option value="VVIP Table|50000">VVIP Table — KES 50,000</option>
+            <option value="VIP Table|45000">VIP Table — KES 45,000</option>
+            <option value="Regular Entry / Table|5000">Regular Entry / Table — KES 5,000</option>
+          </select>
         </div>
 
-        <!-- Full Name -->
-        <div>
-          <label for="booking-name" class="block text-xs font-semibold uppercase tracking-wider text-gold-300 mb-1.5">
-            Full Name *
-          </label>
-          <input
-            id="booking-name"
-            type="text"
-            required
-            placeholder="e.g. Brian Mwangi"
-            class="w-full rounded-xl bg-obsidian border border-gold-500/40 px-4 py-3 text-sm text-white placeholder-stone-500 focus:outline-none focus:border-gold-400"
-          />
-        </div>
-
-        <!-- Number of Guests & Preferred Arrival Time -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+        <div class="grid grid-cols-2 gap-3">
           <div>
-            <label for="booking-guests" class="block text-xs font-semibold uppercase tracking-wider text-gold-300 mb-1.5">
-              Number of Guests *
-            </label>
+            <label for="guestName" class="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-stone-300">Your Name</label>
             <input
-              id="booking-guests"
+              id="guestName"
+              type="text"
+              required
+              placeholder="e.g. Morgan"
+              class="w-full rounded-xl border border-gold/35 bg-obsidian px-3.5 py-2.5 text-sm text-white placeholder-stone-500 focus:border-goldLight focus:outline-none"
+            />
+          </div>
+          <div>
+            <label for="guestCount" class="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-stone-300">Guests</label>
+            <input
+              id="guestCount"
               type="number"
               min="1"
               max="30"
               value="4"
               required
-              oninput="recalculateBookingTotal()"
-              class="w-full rounded-xl bg-obsidian border border-gold-500/40 px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-400"
+              class="w-full rounded-xl border border-gold/35 bg-obsidian px-3.5 py-2.5 text-sm text-white focus:border-goldLight focus:outline-none"
             />
-          </div>
-          <div>
-            <label for="booking-arrival" class="block text-xs font-semibold uppercase tracking-wider text-gold-300 mb-1.5">
-              Preferred Arrival Time *
-            </label>
-            <select
-              id="booking-arrival"
-              class="w-full rounded-xl bg-obsidian border border-gold-500/40 px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-400"
-            >
-              <option value="8:00 PM">8:00 PM (Early Arrival)</option>
-              <option value="9:00 PM" selected>9:00 PM (Doors &amp; Kickoff)</option>
-              <option value="10:00 PM">10:00 PM (Prime Night)</option>
-              <option value="11:00 PM">11:00 PM (Late VIP)</option>
-              <option value="12:00 AM">12:00 AM (Midnight Toast)</option>
-            </select>
           </div>
         </div>
 
-        <!-- Bottle Preference / Notes -->
         <div>
-          <label for="booking-notes" class="block text-xs font-semibold uppercase tracking-wider text-gold-300 mb-1.5">
-            Bottle Preference / Special Notes (Optional)
-          </label>
+          <label for="guestNotes" class="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-stone-300">Bottle / Table Preference (Optional)</label>
           <input
-            id="booking-notes"
+            id="guestNotes"
             type="text"
-            placeholder="e.g. 2x Hennessy VS, celebrating a birthday"
-            class="w-full rounded-xl bg-obsidian border border-gold-500/40 px-4 py-3 text-sm text-white placeholder-stone-500 focus:outline-none focus:border-gold-400"
+            placeholder="e.g. Near main stage, chasers ready"
+            class="w-full rounded-xl border border-gold/35 bg-obsidian px-3.5 py-2.5 text-sm text-white placeholder-stone-500 focus:border-goldLight focus:outline-none"
           />
         </div>
 
-        <!-- Live Total Summary Box -->
-        <div class="rounded-2xl bg-gold-500/10 border border-gold-500/35 p-4 flex items-center justify-between">
-          <div>
-            <span class="text-[11px] uppercase tracking-widest text-stone-400 block">Selected Package Rate</span>
-            <span id="summary-subtext" class="text-xs text-gold-300 font-medium">VVIP Table • 4 Guests</span>
-          </div>
-          <div class="text-right">
-            <span class="text-[10px] uppercase tracking-widest text-stone-400 block">Total Summary</span>
-            <span id="summary-total" class="font-display text-xl sm:text-2xl font-extrabold gold-text-gradient">
-              KES 50,000
-            </span>
-          </div>
-        </div>
-
-        <!-- Inline Status Banner (Never uses alert) -->
-        <div id="booking-feedback" class="hidden rounded-xl border border-gold-400/50 bg-gold-500/15 px-4 py-2.5 text-xs text-gold-300"></div>
-
         <button
           type="submit"
-          class="w-full py-4 rounded-2xl font-extrabold text-xs uppercase tracking-widest text-black gold-btn-gradient shadow-gold-glow cursor-pointer"
+          class="w-full rounded-xl bg-gradient-to-r from-goldDark via-gold to-goldLight py-3 text-xs font-extrabold uppercase tracking-[0.18em] text-obsidian shadow-goldGlow transition hover:brightness-110"
         >
-          Confirm &amp; Send on WhatsApp →
+          Send Booking via WhatsApp
         </button>
       </form>
     </div>
   </div>
 
-  <!-- Application Logic: Dynamic JSON Loader, Countdown, Gallery, & WhatsApp Flow -->
+  <!-- Lightbox Modal -->
+  <div id="lightboxModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 p-4 backdrop-blur-md">
+    <div class="relative w-full max-w-3xl overflow-hidden rounded-2xl gold-border-glow bg-surface">
+      <button
+        type="button"
+        onclick="closeLightbox()"
+        aria-label="Close image preview"
+        class="absolute top-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-obsidian/85 text-lg text-goldLight border border-gold/40 hover:bg-gold hover:text-obsidian"
+      >
+        &times;
+      </button>
+      <img id="lightboxImg" src="" alt="" class="max-h-[75vh] w-full object-cover bg-obsidian" />
+      <div class="flex flex-col items-start justify-between gap-3 p-4 sm:flex-row sm:items-center sm:px-6">
+        <div>
+          <span id="lightboxCategory" class="text-[11px] font-bold uppercase tracking-[0.2em] text-gold"></span>
+          <h4 id="lightboxTitle" class="font-display text-lg font-bold text-white"></h4>
+        </div>
+        <button
+          type="button"
+          onclick="closeLightbox(); openBookingModal('VIP Table', 45000);"
+          class="rounded-full bg-gradient-to-r from-goldDark via-gold to-goldLight px-5 py-2 text-xs font-bold uppercase tracking-[0.15em] text-obsidian"
+        >
+          Book Table for Dec 25th
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // Built-in inline fallback matching the exact schema of ./data/cream-lounge-config.json
-    const DEFAULT_CREAM_CONFIG = {
+    const FALLBACK_CONFIG = {
       venue: {
-        name: 'Cream Lounge',
-        tagline: 'Luxury Nightlife & VIP Experience',
-        whatsappNumber: '254116162159',
-        displayPhone: '0116162159',
-        currency: 'KES',
-        theme: {
-          primaryColor: '#0A0A0A',
-          accentColor: '#D4AF37',
-          liveBadgeColor: '#F5C542'
-        }
+        name: "Cream Lounge",
+        tagline: "Luxury Nightlife & VIP Experience",
+        whatsappNumber: "254116162159",
+        displayPhone: "0116162159",
+        currency: "KES"
       },
       featuredEvent: {
-        title: 'Christmas Night Extravaganza',
-        dateISO: '2026-12-25T21:00:00+03:00',
-        displayDate: 'December 25, 2026',
-        status: 'LIVE BOOKINGS OPEN',
+        title: "Christmas Night Extravaganza",
+        dateISO: "2026-12-25T21:00:00+03:00",
+        displayDate: "December 25, 2026",
+        status: "LIVE BOOKINGS OPEN",
         countdownEnabled: true
       },
       packages: [
         {
-          id: 'vvip',
-          name: 'VVIP Table',
+          id: "vvip",
+          name: "VVIP Table",
           price: 50000,
-          formattedPrice: 'KES 50,000',
-          badge: 'Most Exclusive',
+          formattedPrice: "KES 50,000",
+          badge: "Most Exclusive",
           perks: [
-            'Prime Front-Row VIP Booth (Up to 8 Guests)',
-            '2 Premium Bottles (Hennessy VS / Johnnie Walker Black)',
-            'Dedicated Butler & Express Entry',
-            'Complimentary Chasers & Bitings Platter'
+            "Prime Front-Row VIP Booth (Up to 8 Guests)",
+            "2 Premium Bottles (Hennessy VS / Johnnie Walker Black)",
+            "Dedicated Butler & Express Entry",
+            "Complimentary Chasers & Bitings Platter"
           ]
         },
         {
-          id: 'vip',
-          name: 'VIP Table',
+          id: "vip",
+          name: "VIP Table",
           price: 45000,
-          formattedPrice: 'KES 45,000',
-          badge: 'VIP Experience',
+          formattedPrice: "KES 45,000",
+          badge: "VIP Experience",
           perks: [
-            'Elevated VIP Lounge Table (Up to 6 Guests)',
-            '2 Premium Spirits / Champagne Bottles',
-            'Priority Hostess Service & Fast-Track Entry',
-            'Complimentary Mixers & Ice Service'
+            "Elevated VIP Lounge Table (Up to 6 Guests)",
+            "2 Premium Spirits / Champagne Bottles",
+            "Priority Hostess Service & Fast-Track Entry",
+            "Complimentary Mixers & Ice Service"
           ]
         },
         {
-          id: 'regular',
-          name: 'Regular Entry / Table',
+          id: "regular",
+          name: "Regular Entry / Table",
           price: 5000,
-          formattedPrice: 'KES 5,000',
-          badge: 'Standard Access',
+          formattedPrice: "KES 5,000",
+          badge: "Standard Access",
           perks: [
-            'Main Lounge Access & Reserved Cocktail Spot',
-            '1 Standard Bottle or Drinks Voucher Included',
-            'Full Access to Live DJ Sets & Dancefloor'
+            "Main Lounge Access & Reserved Cocktail Spot",
+            "1 Standard Bottle or Drinks Voucher Included",
+            "Full Access to Live DJ Sets & Dancefloor"
           ]
         }
       ],
       gallery: [
-        {
-          file: 'images/12665.jpg',
-          title: 'VIP Bottle Presentation',
-          category: 'VIP Service'
-        },
-        {
-          file: 'images/12680.jpg',
-          title: 'Cream Lounge Nightlife Vibes',
-          category: 'Atmosphere'
-        },
-        {
-          file: 'images/12664.jpg',
-          title: 'Signature Table Setup',
-          category: 'Drinks & Mixers'
-        },
-        {
-          file: 'images/12662.jpg',
-          title: 'Live DJ Deck & Sound',
-          category: 'Entertainment'
-        },
-        {
-          file: 'images/12679.jpg',
-          title: 'Premium Cognac Service',
-          category: 'VVIP Selection'
-        },
-        {
-          file: 'images/12666.jpg',
-          title: 'Late Night Lounge Moments',
-          category: 'Guests'
-        }
+        { file: "images/1795117552152.jpg", title: "VIP Bottle Presentation", category: "VIP Service" },
+        { file: "images/1795117562625.jpg", title: "Cream Lounge Nightlife Vibes", category: "Atmosphere" },
+        { file: "images/1795117568349.jpg", title: "Signature Table Setup", category: "Drinks & Mixers" },
+        { file: "images/1795117588983.jpg", title: "Live DJ Deck & Sound", category: "Entertainment" },
+        { file: "images/1795117846002.jpg", title: "Premium Cognac Service", category: "VVIP Selection" },
+        { file: "images/1795117849745.jpg", title: "Late Night Lounge Moments", category: "Guests" }
       ]
     };
 
-    // Active runtime state initialized from inline fallback
-    let activeConfig = JSON.parse(JSON.stringify(DEFAULT_CREAM_CONFIG));
-    let activeGalleryFilter = 'All';
-    let countdownIntervalId = null;
+    let activeConfig = FALLBACK_CONFIG;
+    let activeCategory = "All";
 
-    // Deep-merge remote JSON into fallback config safely
-    function mergeConfig(base, incoming) {
-      if (!incoming || typeof incoming !== 'object') return base;
-      return {
-        venue: {
-          ...base.venue,
-          ...(incoming.venue || {}),
-          theme: {
-            ...base.venue.theme,
-            ...((incoming.venue && incoming.venue.theme) || {})
-          }
-        },
-        featuredEvent: {
-          ...base.featuredEvent,
-          ...(incoming.featuredEvent || {})
-        },
-        packages: Array.isArray(incoming.packages) && incoming.packages.length > 0
-          ? incoming.packages
-          : base.packages,
-        gallery: Array.isArray(incoming.gallery) && incoming.gallery.length > 0
-          ? incoming.gallery
-          : base.gallery
-      };
+    function formatKES(amount) {
+      return "KES " + Number(amount || 0).toLocaleString("en-KE");
     }
 
-    // Format currency cleanly
-    function formatCurrency(amount, currency = 'KES') {
-      const num = Number(amount) || 0;
-      return `${currency} ${num.toLocaleString('en-KE')}`;
+    function makeFallbackSvg(label) {
+      const safe = String(label || "Cream Lounge").replace(/[<>&"]/g, "");
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+        <rect width="800" height="600" fill="#101015"/>
+        <rect x="24" y="24" width="752" height="552" rx="18" fill="none" stroke="#D4AF37" stroke-opacity="0.45" stroke-width="2"/>
+        <text x="400" y="285" fill="#F3D06B" font-family="Georgia, serif" font-size="34" font-weight="bold" text-anchor="middle">CREAM LOUNGE</text>
+        <text x="400" y="332" fill="#A8A29E" font-family="sans-serif" font-size="18" text-anchor="middle">${safe}</text>
+      </svg>`;
+      return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
     }
 
-    // Escape HTML strings before template injection
-    function escapeHtml(str) {
-      return String(str ?? '')
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-    }
-
-    // Render Venue & Event Metadata across UI
-    function renderVenueAndEvent() {
-      const { venue, featuredEvent } = activeConfig;
-      const waNumber = venue.whatsappNumber || '254116162159';
-      const displayPhone = venue.displayPhone || '0116162159';
-
-      document.title = `${venue.name} | ${featuredEvent.title} • ${featuredEvent.displayDate}`;
-
-      const navName = document.getElementById('nav-venue-name');
-      const navTagline = document.getElementById('nav-venue-tagline');
-      const navStatus = document.getElementById('nav-live-status');
-      const heroBadge = document.getElementById('hero-live-badge');
-      const heroTitle = document.getElementById('hero-event-title');
-      const heroSubtitle = document.getElementById('hero-venue-subtitle');
-      const pkgDate = document.getElementById('packages-event-date');
-      const footerName = document.getElementById('footer-venue-name');
-      const footerDate = document.getElementById('footer-event-date');
-      const modalPill = document.getElementById('modal-event-pill');
-      const countdownCaption = document.getElementById('countdown-caption');
-
-      if (navName) navName.textContent = venue.name.toUpperCase();
-      if (navTagline) navTagline.textContent = venue.tagline;
-      if (navStatus) navStatus.textContent = featuredEvent.status;
-      if (heroBadge) heroBadge.textContent = `${featuredEvent.status} • ${featuredEvent.displayDate.toUpperCase()}`;
-      if (heroTitle) heroTitle.textContent = featuredEvent.title;
-      if (heroSubtitle) heroSubtitle.textContent = venue.name;
-      if (pkgDate) pkgDate.textContent = featuredEvent.displayDate;
-      if (footerName) footerName.textContent = venue.name.toUpperCase();
-      if (footerDate) footerDate.textContent = featuredEvent.displayDate;
-      if (modalPill) modalPill.textContent = `${featuredEvent.displayDate} • Instant WhatsApp`;
-      if (countdownCaption) countdownCaption.textContent = `Countdown to ${featuredEvent.displayDate} • 9:00 PM EAT`;
-
-      document.querySelectorAll('.js-display-phone').forEach((el) => {
-        el.textContent = displayPhone;
-      });
-
-      const callLink = document.getElementById('concierge-call-link');
-      if (callLink) callLink.href = `tel:+${waNumber}`;
-
-      const footerWa = document.getElementById('footer-whatsapp-link');
-      if (footerWa) footerWa.href = `https://wa.me/${waNumber}`;
-
-      const floatingWa = document.getElementById('floating-whatsapp-btn');
-      if (floatingWa) {
-        const defaultMsg = encodeURIComponent(
-          `Hello ${venue.name}, I would like to book a table for ${featuredEvent.title} on ${featuredEvent.displayDate}.`
-        );
-        floatingWa.href = `https://wa.me/${waNumber}?text=${defaultMsg}`;
-      }
-    }
-
-    // Render Booking Packages Cards + Modal Select Options
     function renderPackages() {
-      const grid = document.getElementById('packages-grid');
-      const select = document.getElementById('booking-package');
-      if (!grid || !select) return;
+      const grid = document.getElementById("packagesGrid");
+      const pkgs = activeConfig.packages || FALLBACK_CONFIG.packages;
 
-      const currency = activeConfig.venue.currency || 'KES';
+      grid.innerHTML = pkgs.map((pkg, idx) => {
+        const isFeatured = idx === 0 || pkg.id === "vvip";
+        const priceText = pkg.formattedPrice || formatKES(pkg.price);
+        const perksHtml = (pkg.perks || []).map(perk => `
+          <li class="flex items-start gap-2.5 text-sm text-stone-300">
+            <span class="mt-1.5 h-2 w-2 flex-shrink-0 rounded-full bg-goldLight"></span>
+            <span>${perk}</span>
+          </li>
+        `).join("");
 
-      // Order cards cleanly on desktop: Regular, VVIP (featured center), VIP
-      const packages = activeConfig.packages;
-      const vvipPkg = packages.find((p) => p.id === 'vvip');
-      const vipPkg = packages.find((p) => p.id === 'vip');
-      const regPkg = packages.find((p) => p.id === 'regular');
-      const orderedPackages =
-        vvipPkg && vipPkg && regPkg ? [regPkg, vvipPkg, vipPkg] : packages;
-
-      grid.innerHTML = orderedPackages
-        .map((pkg) => {
-          const isFeatured = pkg.id === 'vvip';
-          const priceLabel = pkg.formattedPrice || formatCurrency(pkg.price, currency);
-          const perksHtml = (pkg.perks || [])
-            .map(
-              (perk) => `
-              <li class="flex items-start gap-3">
-                <svg class="w-5 h-5 text-gold-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                <span>${escapeHtml(perk)}</span>
-              </li>`
-            )
-            .join('');
-
-          return `
-            <article class="glass-gold-card rounded-3xl p-7 sm:p-8 flex flex-col justify-between relative ${
-              isFeatured ? 'border-gold-400/75 shadow-gold-strong lg:-translate-y-3' : ''
-            }">
-              ${
-                isFeatured
-                  ? `<div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full gold-btn-gradient text-black text-[11px] font-extrabold uppercase tracking-widest shadow-md whitespace-nowrap">
-                      ★ ${escapeHtml(pkg.badge || 'Most Exclusive')}
-                    </div>`
-                  : ''
-              }
-              <div>
-                <div class="flex items-center justify-between mb-4 ${isFeatured ? 'mt-1' : ''}">
-                  <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest border ${
-                    isFeatured
-                      ? 'border-gold-400/50 text-gold-300 bg-gold-500/15'
-                      : 'border-gold-500/35 text-gold-300 bg-gold-500/5'
-                  }">
-                    ${escapeHtml(pkg.badge || 'VIP Access')}
-                  </span>
-                  <span class="text-xs text-stone-400 font-medium">
-                    ${pkg.id === 'regular' ? 'Per Guest' : 'Table Package'}
-                  </span>
-                </div>
-
-                <h3 class="font-display text-2xl sm:text-3xl font-bold text-white mb-2">
-                  ${escapeHtml(pkg.name)}
-                </h3>
-
-                <div class="flex items-baseline gap-1.5 mb-6">
-                  <span class="font-display text-3xl sm:text-4xl font-extrabold gold-text-gradient">
-                    ${escapeHtml(priceLabel)}
-                  </span>
-                </div>
-
-                <div class="h-px bg-gradient-to-r from-gold-500/40 via-gold-500/10 to-transparent mb-6"></div>
-
-                <ul class="space-y-3.5 text-sm ${isFeatured ? 'text-stone-200' : 'text-stone-300'} mb-8">
-                  ${perksHtml}
-                </ul>
-              </div>
-
-              <button
-                type="button"
-                onclick="openBookingModal('${escapeHtml(pkg.id)}')"
-                class="w-full py-4 px-5 rounded-2xl font-extrabold text-xs uppercase tracking-widest cursor-pointer transition ${
-                  isFeatured
-                    ? 'text-black gold-btn-gradient shadow-gold-glow'
-                    : 'border border-gold-500/60 text-gold-300 hover:bg-gold-500 hover:text-black'
-                }"
-              >
-                Book via WhatsApp • ${escapeHtml(priceLabel)}
-              </button>
-            </article>
-          `;
-        })
-        .join('');
-
-      // Populate booking modal dropdown with all packages in config order
-      select.innerHTML = packages
-        .map((pkg) => {
-          const priceLabel = pkg.formattedPrice || formatCurrency(pkg.price, currency);
-          return `<option value="${escapeHtml(pkg.id)}">${escapeHtml(pkg.name)} — ${escapeHtml(priceLabel)}</option>`;
-        })
-        .join('');
-    }
-
-    // Handle graceful SVG/CSS luxury fallback when local photo isn't uploaded yet
-    function handleGalleryImageError(imgEl, title, category) {
-      const wrapper = imgEl.parentElement;
-      if (!wrapper) return;
-      wrapper.innerHTML = `
-        <div class="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#17140d] via-[#0d0d0d] to-[#1a150b] border-b border-gold-500/20">
-          <div class="w-14 h-14 rounded-2xl border border-gold-500/45 bg-gold-500/10 flex items-center justify-center mb-4 shadow-gold-glow">
-            <svg class="w-7 h-7 text-gold-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L14.8 8.2L21.5 9L16.5 13.6L17.8 20.3L12 17L6.2 20.3L7.5 13.6L2.5 9L9.2 8.2L12 2Z" />
-            </svg>
-          </div>
-          <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-gold-400 mb-1">${escapeHtml(category)}</span>
-          <p class="font-display text-base font-bold text-white mb-1">${escapeHtml(title)}</p>
-          <p class="text-[11px] text-stone-400 max-w-[210px]">Cream Lounge Official Gallery Preview</p>
-        </div>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent pointer-events-none"></div>
-        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-black/80 border border-gold-500/40 text-gold-300">
-          ${escapeHtml(category)}
-        </span>
-      `;
-    }
-
-    // Render Gallery Grid with optional category filter
-    function renderGallery() {
-      const grid = document.getElementById('gallery-grid');
-      if (!grid) return;
-
-      const items = activeConfig.gallery.filter((item) => {
-        if (activeGalleryFilter === 'All') return true;
-        return (item.category || '').toLowerCase() === activeGalleryFilter.toLowerCase();
-      });
-
-      grid.innerHTML = items
-        .map((item) => {
-          const originalIndex = activeConfig.gallery.indexOf(item);
-          return `
-            <article
-              onclick="openLightbox(${originalIndex})"
-              class="glass-gold-card rounded-3xl overflow-hidden group cursor-pointer flex flex-col"
-            >
-              <div class="relative aspect-[4/5] w-full overflow-hidden bg-charcoal">
-                <img
-                  src="${escapeHtml(item.file)}"
-                  alt="${escapeHtml(item.title)}"
-                  loading="lazy"
-                  onerror="handleGalleryImageError(this, '${escapeHtml(item.title)}', '${escapeHtml(item.category)}')"
-                  class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none"></div>
-                <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-black/80 border border-gold-500/40 text-gold-300 backdrop-blur-sm">
-                  ${escapeHtml(item.category)}
+        return `
+          <article class="relative flex flex-col justify-between rounded-2xl gold-border-glow ${isFeatured ? "bg-gradient-to-b from-[#1C180D] via-surface to-obsidian ring-1 ring-gold/45" : "bg-surface/90"} p-6 sm:p-7 transition">
+            <div>
+              <div class="flex items-center justify-between gap-2">
+                <span class="rounded-full border border-gold/40 bg-gold/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-goldLight">
+                  ${pkg.badge || "Dec 25th"}
                 </span>
-                <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-2">
-                  <div>
-                    <h3 class="font-display text-lg font-bold text-white group-hover:text-gold-300 transition">
-                      ${escapeHtml(item.title)}
-                    </h3>
-                    <span class="text-[11px] text-stone-400">Tap to inspect</span>
-                  </div>
-                  <span class="w-8 h-8 rounded-full border border-gold-500/40 bg-black/70 text-gold-300 flex items-center justify-center text-xs group-hover:bg-gold-500 group-hover:text-black transition">
-                    ↗
-                  </span>
-                </div>
+                <span class="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-liveGold">
+                  <span class="live-dot-gold" style="width:8px;height:8px;"></span>
+                  Available
+                </span>
               </div>
-            </article>
-          `;
-        })
-        .join('');
+
+              <h3 class="mt-5 font-display text-2xl font-bold text-white">${pkg.name}</h3>
+              <div class="mt-2 flex items-baseline gap-2">
+                <span class="font-display text-3xl font-extrabold gold-text-gradient sm:text-4xl">${priceText}</span>
+              </div>
+
+              <div class="gold-shimmer-line my-5"></div>
+
+              <ul class="space-y-3">
+                ${perksHtml}
+              </ul>
+            </div>
+
+            <button
+              type="button"
+              onclick="openBookingModal('${String(pkg.name).replace(/'/g, "\\'")}', ${Number(pkg.price || 0)})"
+              class="mt-8 w-full rounded-xl ${isFeatured ? "bg-gradient-to-r from-goldDark via-gold to-goldLight text-obsidian font-extrabold shadow-goldGlow" : "border border-gold/50 bg-obsidian/80 text-goldLight font-bold hover:bg-gold/15"} py-3.5 text-xs uppercase tracking-[0.18em] transition hover:brightness-110"
+            >
+              Book ${pkg.name}
+            </button>
+          </article>
+        `;
+      }).join("");
     }
 
-    // Category Filter Handler
-    function filterGallery(category) {
-      activeGalleryFilter = category;
-      document.querySelectorAll('.gallery-filter-btn').forEach((btn) => {
-        const isMatch = btn.getAttribute('data-filter') === category;
-        if (isMatch) {
-          btn.className =
-            'gallery-filter-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-gold-500 text-black border border-gold-400 transition cursor-pointer';
-        } else {
-          btn.className =
-            'gallery-filter-btn px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-charcoal text-stone-300 border border-gold-500/30 hover:border-gold-400 transition cursor-pointer';
-        }
-      });
+    function renderGallery() {
+      const items = activeConfig.gallery || FALLBACK_CONFIG.gallery;
+      const categories = ["All", ...new Set(items.map(i => i.category).filter(Boolean))];
+      const filterContainer = document.getElementById("galleryFilters");
+      const grid = document.getElementById("galleryGrid");
+
+      filterContainer.innerHTML = categories.map(cat => {
+        const active = cat === activeCategory;
+        return `
+          <button
+            type="button"
+            onclick="setGalleryCategory('${String(cat).replace(/'/g, "\\'")}')"
+            class="rounded-full px-3.5 py-1.5 text-xs font-semibold transition ${active ? "bg-gold text-obsidian" : "border border-gold/30 bg-surface text-stone-300 hover:border-gold/70 hover:text-goldLight"}"
+          >
+            ${cat}
+          </button>
+        `;
+      }).join("");
+
+      const filtered = activeCategory === "All"
+        ? items
+        : items.filter(i => i.category === activeCategory);
+
+      grid.innerHTML = filtered.map((item) => {
+        const fallback = makeFallbackSvg(item.title || item.file);
+        return `
+          <figure
+            onclick="openLightbox('${String(item.file).replace(/'/g, "\\'")}', '${String(item.title || "Cream Lounge").replace(/'/g, "\\'")}', '${String(item.category || "Nightlife").replace(/'/g, "\\'")}')"
+            class="group cursor-pointer overflow-hidden rounded-2xl gold-border-glow bg-surface"
+          >
+            <div class="aspect-[4/3] w-full overflow-hidden bg-obsidian">
+              <img
+                src="${item.file}"
+                alt="${item.title || "Cream Lounge photo"}"
+                loading="lazy"
+                onerror="this.onerror=null;this.src='${fallback}';"
+                class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+              />
+            </div>
+            <figcaption class="flex items-center justify-between gap-2 p-4">
+              <div>
+                <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-gold">${item.category || "Nightlife"}</p>
+                <p class="mt-0.5 font-semibold text-stone-100">${item.title || "Cream Lounge"}</p>
+              </div>
+              <span class="text-xs font-semibold text-goldLight">View &rarr;</span>
+            </figcaption>
+          </figure>
+        `;
+      }).join("");
+    }
+
+    function setGalleryCategory(cat) {
+      activeCategory = cat;
       renderGallery();
     }
 
-    // Lightbox Viewer Controls
-    function openLightbox(index) {
-      const item = activeConfig.gallery[index];
-      const modal = document.getElementById('lightbox-modal');
-      const container = document.getElementById('lightbox-media-container');
-      const categoryEl = document.getElementById('lightbox-category');
-      const titleEl = document.getElementById('lightbox-title');
-
-      if (!item || !modal || !container) return;
-
-      container.innerHTML = `
-        <img
-          src="${escapeHtml(item.file)}"
-          alt="${escapeHtml(item.title)}"
-          onerror="this.parentElement.innerHTML='<div class=\\'p-12 text-center\\'><p class=\\'font-display text-2xl text-gold-300 mb-2\\'>${escapeHtml(item.title)}</p><p class=\\'text-xs text-stone-400 uppercase tracking-widest\\'>${escapeHtml(item.category)} • Cream Lounge</p></div>'"
-          class="w-full max-h-[72vh] object-contain"
-        />
-      `;
-      categoryEl.textContent = item.category;
-      titleEl.textContent = item.title;
-
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-
-    function closeLightbox() {
-      const modal = document.getElementById('lightbox-modal');
-      if (!modal) return;
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    document.getElementById('lightbox-modal').addEventListener('click', function (e) {
-      if (e.target === this) closeLightbox();
-    });
-
-    // Real-Time Countdown Timer
     function startCountdown() {
-      if (countdownIntervalId) clearInterval(countdownIntervalId);
+      const targetIso = (activeConfig.featuredEvent && activeConfig.featuredEvent.dateISO) || "2026-12-25T21:00:00+03:00";
+      const targetTime = new Date(targetIso).getTime();
 
       function tick() {
-        const targetMs = new Date(activeConfig.featuredEvent.dateISO).getTime();
-        const diff = targetMs - Date.now();
-
-        const daysEl = document.getElementById('cd-days');
-        const hoursEl = document.getElementById('cd-hours');
-        const minsEl = document.getElementById('cd-minutes');
-        const secsEl = document.getElementById('cd-seconds');
-
-        if (!daysEl || !hoursEl || !minsEl || !secsEl) return;
-
-        if (isNaN(targetMs) || diff <= 0) {
-          daysEl.textContent = '00';
-          hoursEl.textContent = '00';
-          minsEl.textContent = '00';
-          secsEl.textContent = '00';
-          return;
-        }
+        const now = Date.now();
+        const diff = Math.max(0, targetTime - now);
 
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
 
-        daysEl.textContent = String(days).padStart(2, '0');
-        hoursEl.textContent = String(hours).padStart(2, '0');
-        minsEl.textContent = String(minutes).padStart(2, '0');
-        secsEl.textContent = String(seconds).padStart(2, '0');
+        document.getElementById("cd-days").textContent = String(days).padStart(2, "0");
+        document.getElementById("cd-hours").textContent = String(hours).padStart(2, "0");
+        document.getElementById("cd-minutes").textContent = String(minutes).padStart(2, "0");
+        document.getElementById("cd-seconds").textContent = String(seconds).padStart(2, "0");
       }
 
       tick();
-      countdownIntervalId = setInterval(tick, 1000);
+      setInterval(tick, 1000);
     }
 
-    // Interactive Booking Modal Controls
-    function openBookingModal(packageId) {
-      const modal = document.getElementById('booking-modal');
-      const select = document.getElementById('booking-package');
-      const feedback = document.getElementById('booking-feedback');
-      const guestsInput = document.getElementById('booking-guests');
-
-      if (!modal || !select) return;
-      if (feedback) feedback.classList.add('hidden');
-
-      if (packageId) {
-        select.value = packageId;
-        if (guestsInput) {
-          if (packageId === 'vvip') guestsInput.value = 6;
-          else if (packageId === 'vip') guestsInput.value = 4;
-          else guestsInput.value = 1;
-        }
+    function openBookingModal(pkgName, price) {
+      const select = document.getElementById("packageSelect");
+      const targetVal = `${pkgName}|${price}`;
+      const exists = Array.from(select.options).some(opt => opt.value === targetVal);
+      if (!exists && pkgName) {
+        const opt = new Option(`${pkgName} — ${formatKES(price)}`, targetVal);
+        select.add(opt);
       }
+      if (pkgName) select.value = targetVal;
 
-      recalculateBookingTotal();
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
+      const modal = document.getElementById("bookingModal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
     }
 
     function closeBookingModal() {
-      const modal = document.getElementById('booking-modal');
-      if (!modal) return;
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
+      const modal = document.getElementById("bookingModal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
     }
 
-    document.getElementById('booking-modal').addEventListener('click', function (e) {
-      if (e.target === this) closeBookingModal();
+    function openLightbox(src, title, category) {
+      const img = document.getElementById("lightboxImg");
+      img.onerror = function () {
+        this.onerror = null;
+        this.src = makeFallbackSvg(title);
+      };
+      img.src = src;
+      img.alt = title;
+      document.getElementById("lightboxTitle").textContent = title;
+      document.getElementById("lightboxCategory").textContent = category;
+
+      const modal = document.getElementById("lightboxModal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById("lightboxModal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
+    document.getElementById("bookingForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const [pkgName, price] = document.getElementById("packageSelect").value.split("|");
+      const name = document.getElementById("guestName").value.trim();
+      const guests = document.getElementById("guestCount").value.trim();
+      const notes = document.getElementById("guestNotes").value.trim();
+      const eventDate = (activeConfig.featuredEvent && activeConfig.featuredEvent.displayDate) || "December 25, 2026";
+      const waNumber = (activeConfig.venue && activeConfig.venue.whatsappNumber) || "254116162159";
+
+      const lines = [
+        `Hello Cream Lounge, I would like to book for *${eventDate}*:`,
+        `- *Package:* ${pkgName} (${formatKES(price)})`,
+        `- *Name:* ${name}`,
+        `- *Guests:* ${guests}`,
+      ];
+      if (notes) lines.push(`- *Notes:* ${notes}`);
+
+      const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(lines.join("\n"))}`;
+      window.open(url, "_blank", "noopener,noreferrer");
+      closeBookingModal();
     });
 
-    function recalculateBookingTotal() {
-      const select = document.getElementById('booking-package');
-      const guestsInput = document.getElementById('booking-guests');
-      const totalEl = document.getElementById('summary-total');
-      const subtextEl = document.getElementById('summary-subtext');
+    function applyConfigToUI() {
+      const v = activeConfig.venue || FALLBACK_CONFIG.venue;
+      const ev = activeConfig.featuredEvent || FALLBACK_CONFIG.featuredEvent;
 
-      if (!select || !guestsInput || !totalEl || !subtextEl) return;
+      document.getElementById("navVenueName").textContent = (v.name || "CREAM LOUNGE").toUpperCase();
+      document.getElementById("navTagline").textContent = v.tagline || "Luxury Nightlife & VIP Experience";
+      document.getElementById("heroTitle").textContent = (v.name || "CREAM LOUNGE").toUpperCase();
+      document.getElementById("liveStatusText").textContent = `${ev.status || "LIVE BOOKINGS OPEN"} • ${ev.displayDate || "DECEMBER 25, 2026"}`;
+      document.getElementById("footerPhone").textContent = v.displayPhone || "0116162159";
+      document.getElementById("modalPhoneText").textContent = v.displayPhone || "0116162159";
 
-      const selectedPkg =
-        activeConfig.packages.find((p) => p.id === select.value) || activeConfig.packages[0];
-      const guests = Math.max(1, parseInt(guestsInput.value, 10) || 1);
-      const currency = activeConfig.venue.currency || 'KES';
+      const directWa = document.getElementById("heroWhatsappDirect");
+      const msg = `Hello ${v.name || "Cream Lounge"}, I would like to book for the ${ev.displayDate || "December 25, 2026"} event.`;
+      directWa.href = `https://wa.me/${v.whatsappNumber || "254116162159"}?text=${encodeURIComponent(msg)}`;
+      directWa.textContent = `WhatsApp: ${v.displayPhone || "0116162159"}`;
 
-      // For Regular per-person entry, multiply by guest count; for VIP/VVIP tables, display table package rate
-      const computedTotal =
-        selectedPkg.id === 'regular' ? selectedPkg.price * guests : selectedPkg.price;
-
-      totalEl.textContent = formatCurrency(computedTotal, currency);
-      subtextEl.textContent = `${selectedPkg.name} • ${guests} Guest${guests > 1 ? 's' : ''}`;
-    }
-
-    function submitWhatsAppBooking(event) {
-      event.preventDefault();
-      try {
-        const select = document.getElementById('booking-package');
-        const name = document.getElementById('booking-name').value.trim();
-        const guests = Math.max(1, parseInt(document.getElementById('booking-guests').value, 10) || 1);
-        const arrival = document.getElementById('booking-arrival').value;
-        const notes = document.getElementById('booking-notes').value.trim();
-        const feedback = document.getElementById('booking-feedback');
-
-        if (!name) {
-          feedback.textContent = 'Please enter your full name before proceeding.';
-          feedback.classList.remove('hidden');
-          return;
-        }
-
-        const selectedPkg =
-          activeConfig.packages.find((p) => p.id === select.value) || activeConfig.packages[0];
-        const currency = activeConfig.venue.currency || 'KES';
-        const computedTotal =
-          selectedPkg.id === 'regular' ? selectedPkg.price * guests : selectedPkg.price;
-
-        const waNumber = activeConfig.venue.whatsappNumber || '254116162159';
-        const venueName = activeConfig.venue.name || 'Cream Lounge';
-        const eventTitle = activeConfig.featuredEvent.title || 'Christmas Night Extravaganza';
-        const eventDate = activeConfig.featuredEvent.displayDate || 'December 25, 2026';
-
-        const lines = [
-          `*${venueName.toUpperCase()} — OFFICIAL RESERVATION*`,
-          `Event: ${eventTitle} (${eventDate})`,
-          '----------------------------------',
-          `*Guest Name:* ${name}`,
-          `*Package:* ${selectedPkg.name} (${formatCurrency(selectedPkg.price, currency)})`,
-          `*Party Size:* ${guests} Guest${guests > 1 ? 's' : ''}`,
-          `*Arrival Time:* ${arrival}`,
-          `*Estimated Total:* ${formatCurrency(computedTotal, currency)}`,
-          notes ? `*Notes / Bottles:* ${notes}` : null,
-          '----------------------------------',
-          'Please confirm table availability and deposit details. Thank you!'
-        ].filter(Boolean);
-
-        const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(lines.join('\n'))}`;
-
-        feedback.textContent = 'Redirecting to Cream Lounge WhatsApp desk...';
-        feedback.classList.remove('hidden');
-
-        window.open(waUrl, '_blank', 'noopener,noreferrer');
-      } catch (err) {
-        console.error('WhatsApp booking error:', err);
-      }
-    }
-
-    // Render entire UI from current activeConfig
-    function renderAll() {
-      renderVenueAndEvent();
       renderPackages();
       renderGallery();
       startCountdown();
     }
 
-    // Attempt dynamic JSON load on DOMContentLoaded with silent inline fallback
-    document.addEventListener('DOMContentLoaded', async () => {
-      // Initial render immediately using inline fallback so there is zero blank flash
-      renderAll();
-
+    async function initApp() {
       try {
-        const response = await fetch('./data/cream-lounge-config.json', { cache: 'no-store' });
-        if (response.ok) {
-          const remoteJson = await response.json();
-          activeConfig = mergeConfig(DEFAULT_CREAM_CONFIG, remoteJson);
-          renderAll();
+        const res = await fetch("./data/cream-lounge-config.json", { cache: "no-store" });
+        if (res.ok) {
+          const json = await res.json();
+          activeConfig = {
+            ...FALLBACK_CONFIG,
+            ...json,
+            venue: { ...FALLBACK_CONFIG.venue, ...(json.venue || {}) },
+            featuredEvent: { ...FALLBACK_CONFIG.featuredEvent, ...(json.featuredEvent || {}) },
+            packages: Array.isArray(json.packages) && json.packages.length ? json.packages : FALLBACK_CONFIG.packages,
+            gallery: Array.isArray(json.gallery) && json.gallery.length ? json.gallery : FALLBACK_CONFIG.gallery,
+          };
         }
-      } catch (_err) {
-        // Silently keep DEFAULT_CREAM_CONFIG when opened via file:// or before JSON upload
+      } catch (_) {
+        // Fallback config stays active when opened via file:// or offline
       }
-    });
+      applyConfigToUI();
+    }
+
+    initApp();
   </script>
 </body>
 </html>
-```
