@@ -1,0 +1,93 @@
+{
+  "venue": {
+    "name": "Cream Lounge",
+    "tagline": "Luxury Nightlife & VIP Experience",
+    "whatsappNumber": "254116162159",
+    "displayPhone": "0116162159",
+    "currency": "KES",
+    "theme": {
+      "primaryColor": "#0A0A0A",
+      "accentColor": "#D4AF37",
+      "liveBadgeColor": "#F5C542"
+    }
+  },
+  "featuredEvent": {
+    "title": "Christmas Night Extravaganza",
+    "dateISO": "2026-12-25T21:00:00+03:00",
+    "displayDate": "December 25, 2026",
+    "status": "LIVE BOOKINGS OPEN",
+    "countdownEnabled": true
+  },
+  "packages": [
+    {
+      "id": "vvip",
+      "name": "VVIP Table",
+      "price": 50000,
+      "formattedPrice": "KES 50,000",
+      "badge": "Most Exclusive",
+      "perks": [
+        "Prime Front-Row VIP Booth (Up to 8 Guests)",
+        "2 Premium Bottles (Hennessy VS / Johnnie Walker Black)",
+        "Dedicated Butler & Express Entry",
+        "Complimentary Chasers & Bitings Platter"
+      ]
+    },
+    {
+      "id": "vip",
+      "name": "VIP Table",
+      "price": 45000,
+      "formattedPrice": "KES 45,000",
+      "badge": "VIP Experience",
+      "perks": [
+        "Elevated VIP Lounge Table (Up to 6 Guests)",
+        "2 Premium Spirits / Champagne Bottles",
+        "Priority Hostess Service & Fast-Track Entry",
+        "Complimentary Mixers & Ice Service"
+      ]
+    },
+    {
+      "id": "regular",
+      "name": "Regular Entry / Table",
+      "price": 5000,
+      "formattedPrice": "KES 5,000",
+      "badge": "Standard Access",
+      "perks": [
+        "Main Lounge Access & Reserved Cocktail Spot",
+        "1 Standard Bottle or Drinks Voucher Included",
+        "Full Access to Live DJ Sets & Dancefloor"
+      ]
+    }
+  ],
+  "gallery": [
+    {
+      "file": "images/12665.jpg",
+      "title": "VIP Bottle Presentation",
+      "category": "VIP Service"
+    },
+    {
+      "file": "images/12680.jpg",
+      "title": "Cream Lounge Nightlife Vibes",
+      "category": "Atmosphere"
+    },
+    {
+      "file": "images/12664.jpg",
+      "title": "Signature Table Setup",
+      "category": "Drinks & Mixers"
+    },
+    {
+      "file": "images/12662.jpg",
+      "title": "Live DJ Deck & Sound",
+      "category": "Entertainment"
+    },
+    {
+      "file": "images/12679.jpg",
+      "title": "Premium Cognac Service",
+      "category": "VVIP Selection"
+    },
+    {
+      "file": "images/12666.jpg",
+      "title": "Late Night Lounge Moments",
+      "category": "Guests"
+    }
+  ]
+}
